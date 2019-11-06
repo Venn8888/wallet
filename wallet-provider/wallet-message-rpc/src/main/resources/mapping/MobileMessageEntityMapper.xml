@@ -1,0 +1,387 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.venn.message.mapper.MobileMessageEntityMapper" >
+  <resultMap id="BaseResultMap" type="com.venn.message.entity.MobileMessageEntity" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="event_name" property="eventName" jdbcType="VARCHAR" />
+    <result column="message_text" property="messageText" jdbcType="VARCHAR" />
+    <result column="recipient" property="recipient" jdbcType="VARCHAR" />
+    <result column="count_recipient" property="countRecipient" jdbcType="BIGINT" />
+    <result column="fail_recipient" property="failRecipient" jdbcType="VARCHAR" />
+    <result column="count_fail" property="countFail" jdbcType="BIGINT" />
+    <result column="store_code" property="storeCode" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="TINYINT" />
+    <result column="author" property="author" jdbcType="VARCHAR" />
+    <result column="reviewer" property="reviewer" jdbcType="VARCHAR" />
+    <result column="reason_rejection" property="reasonRejection" jdbcType="VARCHAR" />
+    <result column="push_message_time" property="pushMessageTime" jdbcType="TIMESTAMP" />
+    <result column="review_time" property="reviewTime" jdbcType="TIMESTAMP" />
+    <result column="create_at" property="createAt" jdbcType="TIMESTAMP" />
+    <result column="update_at" property="updateAt" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, event_name, message_text, recipient, count_recipient, fail_recipient, count_fail, 
+    store_code, status, author, reviewer, reason_rejection, push_message_time, review_time, 
+    create_at, update_at
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.venn.message.entity.MobileMessageEntityExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from mobile_message
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from mobile_message
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from mobile_message
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.venn.message.entity.MobileMessageEntityExample" >
+    delete from mobile_message
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.venn.message.entity.MobileMessageEntity" >
+    insert into mobile_message (id, event_name, message_text, 
+      recipient, count_recipient, fail_recipient, 
+      count_fail, store_code, status, 
+      author, reviewer, reason_rejection, 
+      push_message_time, review_time, create_at, 
+      update_at)
+    values (#{id,jdbcType=BIGINT}, #{eventName,jdbcType=VARCHAR}, #{messageText,jdbcType=VARCHAR}, 
+      #{recipient,jdbcType=VARCHAR}, #{countRecipient,jdbcType=BIGINT}, #{failRecipient,jdbcType=VARCHAR}, 
+      #{countFail,jdbcType=BIGINT}, #{storeCode,jdbcType=VARCHAR}, #{status,jdbcType=TINYINT}, 
+      #{author,jdbcType=VARCHAR}, #{reviewer,jdbcType=VARCHAR}, #{reasonRejection,jdbcType=VARCHAR}, 
+      #{pushMessageTime,jdbcType=TIMESTAMP}, #{reviewTime,jdbcType=TIMESTAMP}, #{createAt,jdbcType=TIMESTAMP}, 
+      #{updateAt,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.venn.message.entity.MobileMessageEntity" >
+    insert into mobile_message
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="eventName != null" >
+        event_name,
+      </if>
+      <if test="messageText != null" >
+        message_text,
+      </if>
+      <if test="recipient != null" >
+        recipient,
+      </if>
+      <if test="countRecipient != null" >
+        count_recipient,
+      </if>
+      <if test="failRecipient != null" >
+        fail_recipient,
+      </if>
+      <if test="countFail != null" >
+        count_fail,
+      </if>
+      <if test="storeCode != null" >
+        store_code,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="author != null" >
+        author,
+      </if>
+      <if test="reviewer != null" >
+        reviewer,
+      </if>
+      <if test="reasonRejection != null" >
+        reason_rejection,
+      </if>
+      <if test="pushMessageTime != null" >
+        push_message_time,
+      </if>
+      <if test="reviewTime != null" >
+        review_time,
+      </if>
+      <if test="createAt != null" >
+        create_at,
+      </if>
+      <if test="updateAt != null" >
+        update_at,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="eventName != null" >
+        #{eventName,jdbcType=VARCHAR},
+      </if>
+      <if test="messageText != null" >
+        #{messageText,jdbcType=VARCHAR},
+      </if>
+      <if test="recipient != null" >
+        #{recipient,jdbcType=VARCHAR},
+      </if>
+      <if test="countRecipient != null" >
+        #{countRecipient,jdbcType=BIGINT},
+      </if>
+      <if test="failRecipient != null" >
+        #{failRecipient,jdbcType=VARCHAR},
+      </if>
+      <if test="countFail != null" >
+        #{countFail,jdbcType=BIGINT},
+      </if>
+      <if test="storeCode != null" >
+        #{storeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="author != null" >
+        #{author,jdbcType=VARCHAR},
+      </if>
+      <if test="reviewer != null" >
+        #{reviewer,jdbcType=VARCHAR},
+      </if>
+      <if test="reasonRejection != null" >
+        #{reasonRejection,jdbcType=VARCHAR},
+      </if>
+      <if test="pushMessageTime != null" >
+        #{pushMessageTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reviewTime != null" >
+        #{reviewTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createAt != null" >
+        #{createAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateAt != null" >
+        #{updateAt,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.venn.message.entity.MobileMessageEntityExample" resultType="java.lang.Integer" >
+    select count(*) from mobile_message
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update mobile_message
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.eventName != null" >
+        event_name = #{record.eventName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.messageText != null" >
+        message_text = #{record.messageText,jdbcType=VARCHAR},
+      </if>
+      <if test="record.recipient != null" >
+        recipient = #{record.recipient,jdbcType=VARCHAR},
+      </if>
+      <if test="record.countRecipient != null" >
+        count_recipient = #{record.countRecipient,jdbcType=BIGINT},
+      </if>
+      <if test="record.failRecipient != null" >
+        fail_recipient = #{record.failRecipient,jdbcType=VARCHAR},
+      </if>
+      <if test="record.countFail != null" >
+        count_fail = #{record.countFail,jdbcType=BIGINT},
+      </if>
+      <if test="record.storeCode != null" >
+        store_code = #{record.storeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=TINYINT},
+      </if>
+      <if test="record.author != null" >
+        author = #{record.author,jdbcType=VARCHAR},
+      </if>
+      <if test="record.reviewer != null" >
+        reviewer = #{record.reviewer,jdbcType=VARCHAR},
+      </if>
+      <if test="record.reasonRejection != null" >
+        reason_rejection = #{record.reasonRejection,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pushMessageTime != null" >
+        push_message_time = #{record.pushMessageTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.reviewTime != null" >
+        review_time = #{record.reviewTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createAt != null" >
+        create_at = #{record.createAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateAt != null" >
+        update_at = #{record.updateAt,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update mobile_message
+    set id = #{record.id,jdbcType=BIGINT},
+      event_name = #{record.eventName,jdbcType=VARCHAR},
+      message_text = #{record.messageText,jdbcType=VARCHAR},
+      recipient = #{record.recipient,jdbcType=VARCHAR},
+      count_recipient = #{record.countRecipient,jdbcType=BIGINT},
+      fail_recipient = #{record.failRecipient,jdbcType=VARCHAR},
+      count_fail = #{record.countFail,jdbcType=BIGINT},
+      store_code = #{record.storeCode,jdbcType=VARCHAR},
+      status = #{record.status,jdbcType=TINYINT},
+      author = #{record.author,jdbcType=VARCHAR},
+      reviewer = #{record.reviewer,jdbcType=VARCHAR},
+      reason_rejection = #{record.reasonRejection,jdbcType=VARCHAR},
+      push_message_time = #{record.pushMessageTime,jdbcType=TIMESTAMP},
+      review_time = #{record.reviewTime,jdbcType=TIMESTAMP},
+      create_at = #{record.createAt,jdbcType=TIMESTAMP},
+      update_at = #{record.updateAt,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.venn.message.entity.MobileMessageEntity" >
+    update mobile_message
+    <set >
+      <if test="eventName != null" >
+        event_name = #{eventName,jdbcType=VARCHAR},
+      </if>
+      <if test="messageText != null" >
+        message_text = #{messageText,jdbcType=VARCHAR},
+      </if>
+      <if test="recipient != null" >
+        recipient = #{recipient,jdbcType=VARCHAR},
+      </if>
+      <if test="countRecipient != null" >
+        count_recipient = #{countRecipient,jdbcType=BIGINT},
+      </if>
+      <if test="failRecipient != null" >
+        fail_recipient = #{failRecipient,jdbcType=VARCHAR},
+      </if>
+      <if test="countFail != null" >
+        count_fail = #{countFail,jdbcType=BIGINT},
+      </if>
+      <if test="storeCode != null" >
+        store_code = #{storeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="author != null" >
+        author = #{author,jdbcType=VARCHAR},
+      </if>
+      <if test="reviewer != null" >
+        reviewer = #{reviewer,jdbcType=VARCHAR},
+      </if>
+      <if test="reasonRejection != null" >
+        reason_rejection = #{reasonRejection,jdbcType=VARCHAR},
+      </if>
+      <if test="pushMessageTime != null" >
+        push_message_time = #{pushMessageTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reviewTime != null" >
+        review_time = #{reviewTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createAt != null" >
+        create_at = #{createAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateAt != null" >
+        update_at = #{updateAt,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.venn.message.entity.MobileMessageEntity" >
+    update mobile_message
+    set event_name = #{eventName,jdbcType=VARCHAR},
+      message_text = #{messageText,jdbcType=VARCHAR},
+      recipient = #{recipient,jdbcType=VARCHAR},
+      count_recipient = #{countRecipient,jdbcType=BIGINT},
+      fail_recipient = #{failRecipient,jdbcType=VARCHAR},
+      count_fail = #{countFail,jdbcType=BIGINT},
+      store_code = #{storeCode,jdbcType=VARCHAR},
+      status = #{status,jdbcType=TINYINT},
+      author = #{author,jdbcType=VARCHAR},
+      reviewer = #{reviewer,jdbcType=VARCHAR},
+      reason_rejection = #{reasonRejection,jdbcType=VARCHAR},
+      push_message_time = #{pushMessageTime,jdbcType=TIMESTAMP},
+      review_time = #{reviewTime,jdbcType=TIMESTAMP},
+      create_at = #{createAt,jdbcType=TIMESTAMP},
+      update_at = #{updateAt,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
