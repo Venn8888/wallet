@@ -1,8 +1,8 @@
 package com.venn.strategy.support;
 
-import com.venn.rest.domain.ExpectedEntity;
-import com.venn.rest.domain.RealDataDTO;
-import com.venn.rest.strategy.AbstractFilterStrategy;
+import com.venn.domain.dto.ExpectedEntity;
+import com.venn.domain.dto.RealDataDTO;
+import com.venn.strategy.AbstractFilterStrategy;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 

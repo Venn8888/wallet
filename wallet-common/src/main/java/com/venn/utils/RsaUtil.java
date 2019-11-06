@@ -75,7 +75,7 @@ public class RsaUtil {
     }
   }
 
-  private static String decode(String priKey, String base64Text) {
+  public static String decode(String priKey, String base64Text) {
     try {
       byte[] buffer = Base64.decode(priKey);
       PKCS8EncodedKeySpec keySpec = new PKCS8EncodedKeySpec(buffer);
