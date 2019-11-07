@@ -18,7 +18,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestBody;
 
 /**
- * @author 杜文锋
+ * @author venn
  * @version 1.0.0
  * @date 2019/11/4 16:41
  */
@@ -42,7 +42,7 @@ public class UserService {
      *
      * @return : com.venn.domain.vo.rsp.UserInfoRspVO
      * @Param() : [userInfoReqVO]
-     * @author : 杜文锋
+     * @author : venn
      * @date : 2019/11/5
      **/
     public UserInfoRspVO getUserInfo(@RequestBody @Validated UserInfoReqVO userInfoReqVO) {

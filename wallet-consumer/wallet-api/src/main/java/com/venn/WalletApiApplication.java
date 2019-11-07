@@ -7,7 +7,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 /**
- * @author 杜文锋
+ * @author venn
  * @version 1.0.0
  * @date 2019/11/4 16:48
  */
