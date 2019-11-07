@@ -19,8 +19,18 @@ public class MobileMessageManager {
     }
 
     public MobileMessageEntity getMobileMessageById(Long id) {
-
         return mobileMessageEntityMapper.selectByPrimaryKey(id);
+    }
 
+    public boolean saveMobileMessage(MobileMessageEntity entity) {
+        return 1 == mobileMessageEntityMapper.insertSelective(entity);
+    }
+
+    public boolean deleteMobileMessageById(Long id) {
+        return 1 == mobileMessageEntityMapper.deleteByPrimaryKey(id);
+    }
+
+    public boolean updateMobileMessageById(MobileMessageEntity entity) {
+        return 1 == mobileMessageEntityMapper.updateByPrimaryKey(entity);
     }
 }

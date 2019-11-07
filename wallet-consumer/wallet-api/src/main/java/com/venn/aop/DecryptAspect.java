@@ -2,6 +2,7 @@ package com.venn.aop;
 
 import com.venn.domain.annotion.DecryptField;
 import com.venn.utils.RsaUtil;
+import org.apache.commons.lang3.StringUtils;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -10,7 +11,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
-import org.springframework.util.StringUtils;
 
 import java.lang.reflect.Field;
 import java.util.Objects;
@@ -70,7 +70,7 @@ public class DecryptAspect {
         field.setAccessible(true);
         try {
           String encryptValue = (String) field.get(arg);
-          String plaintextValue = !StringUtils.isEmpty(encryptValue) ? RsaUtil.decode(PRI_KEY, encryptValue) : null;
+          String plaintextValue = StringUtils.isNotEmpty(encryptValue) ? RsaUtil.decode(PRI_KEY, encryptValue) : null;
           field.set(arg, plaintextValue);
         } catch (Exception e) {
           throw new RuntimeException(e.toString());
