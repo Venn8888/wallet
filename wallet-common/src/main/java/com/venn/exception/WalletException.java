@@ -39,4 +39,14 @@ public class WalletException extends RuntimeException implements Serializable {
         this.code = codeMsgEnum.getCode();
         this.msg = codeMsgEnum.getMsg();
     }
+
+    public WalletException(String message, Throwable e) {
+        super(message, e);
+    }
+
+    public WalletException(ErrorCodeMsgEnum codeMsgEnum, Throwable e) {
+        super(codeMsgEnum.toString(), e);
+        this.code = codeMsgEnum.getCode();
+        this.msg = codeMsgEnum.getMsg();
+    }
 }
