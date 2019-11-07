@@ -1,14 +1,14 @@
 package com.venn.utils;
 
 import com.sun.org.apache.xml.internal.security.utils.Base64;
+
+import javax.crypto.Cipher;
 import java.security.KeyFactory;
 import java.security.PrivateKey;
 import java.security.PublicKey;
 import java.security.Signature;
 import java.security.spec.PKCS8EncodedKeySpec;
 import java.security.spec.X509EncodedKeySpec;
-import java.util.Random;
-import javax.crypto.Cipher;
 
 /**
  * @author dwf
@@ -104,20 +104,20 @@ public class RsaUtil {
         + "c010w6Dyl1vqz5l99aSmnGpaJQCLAiBUbznE9WlnD1ZZXwvMIgkEZb3vwJtjebXe\n"
         + "BYxGTJSmaA==";
 
-    Random random = new Random();
+ /*   Random random = new Random();
     StringBuilder sb = new StringBuilder();
     for (int i = 0; i < 8; i++) {
       sb.append(random.nextInt(9));
-    }
-    System.out.println(sb.toString());
+    }*/
+  /*  System.out.println(sb.toString());
 
     String sha256 = RsaUtil.signSha256(sb.toString(), priKey);
     System.out.println(sha256);
 
     boolean checkSha256 = RsaUtil.signCheckSha256(sb.toString(), sha256, pubKey);
-    System.out.println(checkSha256);
+    System.out.println(checkSha256);*/
 
-    String encode = RsaUtil.encode(pubKey, sb.toString());
+    String encode = RsaUtil.encode(pubKey, "458634525954625841");
     System.out.println("encode: " + encode);
 
     String decode = RsaUtil.decode(priKey, encode);

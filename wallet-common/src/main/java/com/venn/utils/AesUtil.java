@@ -1,12 +1,13 @@
 package com.venn.utils;
 
 import com.sun.org.apache.xml.internal.security.utils.Base64;
-import java.io.IOException;
-import javax.crypto.Cipher;
-import javax.crypto.spec.SecretKeySpec;
 import org.springframework.util.StringUtils;
 import sun.misc.BASE64Decoder;
 import sun.misc.BASE64Encoder;
+
+import javax.crypto.Cipher;
+import javax.crypto.spec.SecretKeySpec;
+import java.io.IOException;
 
 /**
  * @author dwf
@@ -78,9 +79,9 @@ public class AesUtil {
   }
 
   public static void main(String[] args) {
-    String oppooppo = AesUtil.encryptWithoutRandom("123456789", "oppooppooppooppo");
-    System.out.println(oppooppo);
-    String random = AesUtil.decryptWithoutRandomFromBase64(oppooppo, "oppooppooppooppo");
+    String venn = AesUtil.encryptWithoutRandom("123456789", "vennvennvennvenn");
+    System.out.println(venn);
+    String random = AesUtil.decryptWithoutRandomFromBase64(venn, "vennvennvennvenn");
     System.out.println(random);
   }
 }

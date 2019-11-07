@@ -1,8 +1,7 @@
 package com.venn.aop;
 
+import com.venn.domain.annotion.DecryptField;
 import com.venn.utils.RsaUtil;
-import java.lang.reflect.Field;
-import java.util.Objects;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -13,12 +12,15 @@ import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
+import java.lang.reflect.Field;
+import java.util.Objects;
+
 /**
- * 接口入参解密切面
- *
- * @author dwf
- * @date 2019/9/29 22:39
- */
+ * 处理前端加密数据解密切面
+ * <p>
+ * @author : 杜文锋
+ * @date : 2019/11/7
+ **/
 @Component
 @Aspect
 @Order(2)
@@ -38,7 +40,7 @@ public class DecryptAspect {
   /**
    * 定义一个切入点
    */
-  @Pointcut("execution(* com.venn..*.*(..))")
+  @Pointcut("execution(* com.venn.service..*.*(..))")
   public void annotationPointCut() {
   }
 

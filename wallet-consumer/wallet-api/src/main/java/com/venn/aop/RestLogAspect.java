@@ -10,11 +10,11 @@ import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 /**
- * 接口入参出参及耗时打印日志切面
- *
- * @author dwf
- * @date 2019/9/22 22:34
- */
+ * 接口出入参切面
+ * <p>
+ * @author : 杜文锋
+ * @date : 2019/11/7
+ **/
 @Component
 @Aspect
 @Order(1)
@@ -25,7 +25,7 @@ public class RestLogAspect {
   /**
    * 定义一个切入点
    */
-  @Pointcut("execution(* com.venn..*.*(..))")
+  @Pointcut("execution(* com.venn.controller..*.*(..))")
   public void executePointCut() {
   }
 

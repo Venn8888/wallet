@@ -1,4 +1,4 @@
-package com.venn.aop;
+package com.venn.domain.annotion;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
