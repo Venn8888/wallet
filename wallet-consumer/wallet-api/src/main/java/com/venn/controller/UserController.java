@@ -31,6 +31,6 @@ public class UserController {
     @PostMapping("get")
     public IResponse getUserInfo(@RequestBody @Validated UserInfoReqVO userInfoReqVO) {
         UserInfoRspVO userInfo = userService.getUserInfo(userInfoReqVO);
-        return  IResponseUtil.success(userInfo);
+        return IResponseUtil.success(userInfo);
     }
 }

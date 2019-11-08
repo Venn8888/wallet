@@ -32,7 +32,7 @@ public class MobileMessageController {
     }
 
     @GetMapping(value = "/mobile-msg/get")
-    public IResponse getMobileMessageDTO(Long id) {
+    public IResponse<MobileMessageDTO> getMobileMessageDTO(Long id) {
         LOGGER.info("abc:{}", refreshData);
         LOGGER.info("req id:{}", id);
         MobileMessageDTO dto = mobileMessageService.getMobileMessageDTO(id);

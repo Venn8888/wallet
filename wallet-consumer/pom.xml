@@ -42,14 +42,14 @@
 
     <!-- nacos注册中心依赖 -->
     <dependency>
-      <groupId>org.springframework.cloud</groupId>
-      <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+      <groupId>com.alibaba.cloud</groupId>
+      <artifactId>spring-cloud-alibaba-nacos-discovery</artifactId>
     </dependency>
 
     <!-- nacos配置中心依赖 -->
     <dependency>
-      <groupId>org.springframework.cloud</groupId>
-      <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
+      <groupId>com.alibaba.cloud</groupId>
+      <artifactId>spring-cloud-alibaba-nacos-config</artifactId>
     </dependency>
 
     <dependency>
@@ -68,6 +68,5 @@
         </exclusion>
       </exclusions>
     </dependency>
-
   </dependencies>
 </project>
