@@ -1,7 +1,8 @@
 package com.venn.domain.dto;
 
-import java.io.Serializable;
 import lombok.Data;
+
+import java.io.Serializable;
 
 /**
  * @author dwf
@@ -11,11 +12,11 @@ import lombok.Data;
 @Data
 public class ExpectedEntity implements Serializable {
 
-  private static final long serialVersionUID = -4497711506510092416L;
+    private static final long serialVersionUID = -4497711506510092416L;
 
-  private String name;
+    private String name;
 
-  private Integer age;
+    private Integer age;
 
-  private Double height;
+    private Double height;
 }

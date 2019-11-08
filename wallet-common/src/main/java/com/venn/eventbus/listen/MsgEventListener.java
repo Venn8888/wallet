@@ -13,10 +13,10 @@ import org.springframework.stereotype.Component;
 @Component
 public class MsgEventListener implements EventListener {
 
-  @Subscribe
-  public String sendMsg(MsgEvent event) {
-    String jsonString = JSON.toJSONString(event);
-    System.out.println("==================>" + jsonString);
-    return jsonString;
-  }
+    @Subscribe
+    public String sendMsg(MsgEvent event) {
+        String jsonString = JSON.toJSONString(event);
+        System.out.println("==================>" + jsonString);
+        return jsonString;
+    }
 }

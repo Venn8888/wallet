@@ -10,19 +10,19 @@ import lombok.Getter;
 @Getter
 public enum ErrorCodeMsgEnum {
 
-   FAIL(400L,"系统错误"),
+    FAIL(400L, "系统错误"),
 
-   DATA_NOT_EXIST(201L,"数据不不存在"),
+    DATA_NOT_EXIST(201L, "数据不不存在"),
 
-    AOP_RSA_DECRYPT_FAIL(202L,"解密切面rsa解密错误"),
+    AOP_RSA_DECRYPT_FAIL(202L, "解密切面rsa解密错误"),
 
     ;
 
-   private Long code;
+    private Long code;
 
-   private String msg;
+    private String msg;
 
-   ErrorCodeMsgEnum(Long code,String msg){
+    ErrorCodeMsgEnum(Long code, String msg) {
         this.code = code;
         this.msg = msg;
     }
