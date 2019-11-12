@@ -118,7 +118,7 @@ public class RsaUtil {
         boolean checkSha256 = RsaUtil.signCheckSha256(sb.toString(), sha256, pubKey);
         System.out.println(checkSha256);
 
-        String encode = RsaUtil.encode(pubKey, "458634525954625841");
+        String encode = RsaUtil.encode(pubKey, sb.toString());
         System.out.println("encode: " + encode);
 
         String decode = RsaUtil.decode(priKey, encode);
