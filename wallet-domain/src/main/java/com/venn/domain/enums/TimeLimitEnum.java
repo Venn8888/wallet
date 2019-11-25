@@ -3,7 +3,9 @@ package com.venn.domain.enums;
 import lombok.Getter;
 
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Date;
 
 /**
  * 时间范围枚举
@@ -15,10 +17,25 @@ import java.util.*;
 @Getter
 public enum TimeLimitEnum {
 
+    /**
+     * 近7天
+     */
     NEARLY_SEVEN_DAYS(1, "近7天", getPastDate(7, 1)),
+    /**
+     * 近30天
+     */
     NEARLY_THIRTY_DAYS(2, "近30天", getPastDate(30, 1)),
+    /**
+     * 近90天
+     */
     NEARLY_NINETY_DAYS(3, "近90天", getPastDate(90, 1)),
+    /**
+     * 近半年
+     */
     NEARLY_HALF_YEAR(4, "近半年", getPastDate(180, 1)),
+    /**
+     * 近一年
+     */
     NEARLY_ONE_YEAR(5, "近一年", getPastDate(365, 1)),
     ;
 
@@ -60,16 +77,4 @@ public enum TimeLimitEnum {
         return dateFormat.format(frontPast) + " ~ " + dateFormat.format(frontOne);
     }
 
-    public static void main(String[] args) {
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < 1000000; i++) {
-            sb.append(i).append(",");
-        }
-        String s = sb.toString();
-
-        String[] split = s.split(",");
-        System.out.println(split.length);
-
-
-    }
 }
