@@ -13,7 +13,7 @@ public class IdGenerator {
     /**
      * 唯一时间，这是一个避免重复的随机量，自行设定不要大于当前时间戳
      */
-    private static final long TWEPOCH = 1576661923750L;
+    private static final long TWEPOCH = 1288834974657L;
     /**
      * Thu, 04 Nov 2010 01:42:54 GMT
      */
