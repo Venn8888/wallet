@@ -21,7 +21,7 @@ public class IdGenerator {
     /**
      * 节点ID长度
      */
-    private long datacenterIdBits = 5L;
+    private long dataCenterIdBits = 5L;
     /**
      * 最大支持数据中心节点数0~31，一共32个
      */
@@ -33,11 +33,11 @@ public class IdGenerator {
     /**
      * 机器节点左移12位
      */
-    private long datacenterIdShift = sequenceBits + workerIdBits;
+    private long dataCenterIdShift = sequenceBits + workerIdBits;
     /**
      * 数据中心节点左移17位
      */
-    private long timestampLeftShift = sequenceBits + workerIdBits + datacenterIdBits;
+    private long timestampLeftShift = sequenceBits + workerIdBits + dataCenterIdBits;
     /**
      * 时间毫秒数左移22位
      */
@@ -59,7 +59,7 @@ public class IdGenerator {
         this(0L, 0L);
     }
 
-    private IdGenerator(long workerId, long dataCenterId) {
+    public IdGenerator(long workerId, long dataCenterId) {
         //数据中心ID长度
         long maxWorkerId = ~(-1L << workerIdBits);
         if (workerId > maxWorkerId || workerId < 0) {
@@ -67,15 +67,15 @@ public class IdGenerator {
         }
 
         //最大支持机器节点数0~31，一共32个
-        long maxDataCenterId = ~(-1L << datacenterIdBits);
+        long maxDataCenterId = ~(-1L << dataCenterIdBits);
         if (dataCenterId > maxDataCenterId || dataCenterId < 0) {
-            throw new IllegalArgumentException(String.format("datacenter Id can't be greater than %d or less than 0", maxDataCenterId));
+            throw new IllegalArgumentException(String.format("dataCenter Id can't be greater than %d or less than 0", maxDataCenterId));
         }
         this.workerId = workerId;
         this.dataCenterId = dataCenterId;
     }
 
-    private synchronized long nextId() {
+    public synchronized long nextId() {
         long timestamp = timeGen();
         //获取当前毫秒数
         //如果服务器时间有问题(时钟后退) 报错。
@@ -97,7 +97,7 @@ public class IdGenerator {
             //如果和上次生成时间不同,重置sequence，就是下一毫秒开始，sequence计数重新从0开始累加
         }
         lastTimestamp = timestamp;
-        return ((timestamp - TWEPOCH) << timestampLeftShift) | (dataCenterId << datacenterIdShift) | (workerId << workerIdShift) | sequence;
+        return ((timestamp - TWEPOCH) << timestampLeftShift) | (dataCenterId << dataCenterIdShift) | (workerId << workerIdShift) | sequence;
     }
 
     private long tilNextMillis(long lastTimestamp) {
@@ -110,10 +110,5 @@ public class IdGenerator {
 
     private long timeGen() {
         return System.currentTimeMillis();
-    }
-
-    public static void main(String[] args) {
-        System.out.println(System.currentTimeMillis());
-        System.out.println(IdGenerator.get().nextId());
     }
 }
