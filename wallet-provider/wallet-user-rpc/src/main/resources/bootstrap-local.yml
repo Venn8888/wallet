@@ -1,0 +1,7 @@
+spring:
+  profiles: local
+  cloud:
+    nacos:
+      config:
+        namespace: 239ca3d0-33ae-422c-8cd1-6ef73212cd09
+        server-addr: 122.51.7.220:8848
