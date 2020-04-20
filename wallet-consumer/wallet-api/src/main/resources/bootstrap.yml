@@ -1,0 +1,18 @@
+server:
+  port: 8088
+  servlet:
+    context-path: /${spring.application.name}
+
+spring:
+  application:
+    name: wallet-api
+  profiles:
+    active: local
+  main:
+    allow-bean-definition-overriding: true
+  cloud:
+    nacos:
+      #配置加载优先级 application[带环境的优先于未带环境的] > ext-config[越后的越优] > shared-dataids[越后的越优]
+      config:
+        shared-dataids: common.properties,wallet-api.properties
+        refreshable-dataids: common.properties,wallet-api.properties

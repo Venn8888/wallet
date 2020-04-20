@@ -1,7 +1,7 @@
 package com.venn.scheduling;
 
-import com.venn.manager.RedisLockManager;
 import com.venn.domain.RedisLock;
+import com.venn.manager.RedisLockManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -25,7 +25,7 @@ public class TestScheduling {
 
     private static final RedisLock REDIS_LOCK = new RedisLock("testSchedulingKey", "testSchedulingValue");
 
-    @Value("${venn}")
+    @Value("${venn:李白}")
     private String name;
 
     private final RedisLockManager redisLockManager;
