@@ -9,6 +9,7 @@
         <module>wallet-common</module>
         <module>wallet-domain</module>
         <module>wallet-provider-client</module>
+        <module>wallet-gateway</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
