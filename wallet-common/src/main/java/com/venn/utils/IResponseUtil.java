@@ -28,4 +28,12 @@ public class IResponseUtil {
         return response;
     }
 
+    public static <T> IResponse<T> fail(Long code, String msg) {
+        IResponse<T> response = new IResponse<>();
+        response.setMsg(msg);
+        response.setCode(code);
+        response.setSuccess(false);
+        return response;
+    }
+
 }

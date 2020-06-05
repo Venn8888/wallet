@@ -16,8 +16,8 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-gateway</artifactId>
         </dependency>
-        <!-- &lt;!&ndash; nacos注册中心依赖 &ndash;&gt;
-         <dependency>
+         <!-- nacos注册中心依赖 -->
+        <!-- <dependency>
              <groupId>org.springframework.cloud</groupId>
              <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
          </dependency>

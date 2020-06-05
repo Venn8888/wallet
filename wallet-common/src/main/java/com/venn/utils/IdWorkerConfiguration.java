@@ -26,10 +26,11 @@ public class IdWorkerConfiguration {
     private String workId;
     @Value("${id.dateSource:noDateSource}")
     private String dateSource;
+
     @Bean
     @Primary
-    public IdGenerator idWorker(){
-        return new IdGenerator(getWorkFromConfig(),getDateFromConfig());
+    public IdGenerator idWorker() {
+        return new IdGenerator(getWorkFromConfig(), getDateFromConfig());
     }
 
     private Long getWorkFromConfig() {
@@ -50,28 +51,28 @@ public class IdWorkerConfiguration {
         }
     }
 
-    private Long getWorkId(){
+    private Long getWorkId() {
         try {
             String hostAddress = Inet4Address.getLocalHost().getHostAddress();
             int[] ints = StringUtils.toCodePoints(hostAddress);
             int sums = 0;
-            for(int b : ints){
+            for (int b : ints) {
                 sums += b;
             }
-            return (long)(sums % 32);
+            return (long) (sums % 32);
         } catch (UnknownHostException e) {
             // 如果获取失败，则使用随机数备用
-            return RandomUtils.nextLong(0,31);
+            return RandomUtils.nextLong(0, 31);
         }
     }
 
-    private Long getDataCenterId(){
+    private Long getDataCenterId() {
         int[] ints = StringUtils.toCodePoints(SystemUtils.getHostName());
         int sums = 0;
-        for (int i: ints) {
+        for (int i : ints) {
             sums += i;
         }
-        return (long)(sums % 32);
+        return (long) (sums % 32);
     }
 
 }

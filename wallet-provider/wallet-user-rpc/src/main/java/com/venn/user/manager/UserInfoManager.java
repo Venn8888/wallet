@@ -1,7 +1,7 @@
 package com.venn.user.manager;
 
-import com.venn.user.entity.UserInfoEntity;
-import com.venn.user.mapper.UserInfoEntityMapper;
+import com.venn.user.entity.UserDomain;
+import com.venn.user.mapper.UserDomainMapper;
 import org.springframework.stereotype.Component;
 
 /**
@@ -12,13 +12,13 @@ import org.springframework.stereotype.Component;
 @Component
 public class UserInfoManager {
 
-    private final UserInfoEntityMapper userInfoEntityMapper;
+    private final UserDomainMapper userInfoEntityMapper;
 
-    public UserInfoManager(UserInfoEntityMapper userInfoEntityMapper) {
+    public UserInfoManager(UserDomainMapper userInfoEntityMapper) {
         this.userInfoEntityMapper = userInfoEntityMapper;
     }
 
-    public UserInfoEntity getUserInfoByUserId(String userId){
+    public UserDomain getUserInfoByUserId(Long userId){
         return userInfoEntityMapper.selectByPrimaryKey(userId);
     }
 }

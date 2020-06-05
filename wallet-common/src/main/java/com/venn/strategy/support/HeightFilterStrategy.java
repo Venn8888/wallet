@@ -14,26 +14,26 @@ import org.springframework.stereotype.Component;
 @Order(2)
 public class HeightFilterStrategy extends AbstractFilterStrategy<Double> {
 
-  @Override
-  protected boolean doFilter(Double realHeight, ExpectedEntity expected) {
-    if (realHeight == null) {
-      return false;
+    @Override
+    protected boolean doFilter(Double realHeight, ExpectedEntity expected) {
+        if (realHeight == null) {
+            return false;
+        }
+        boolean b = realHeight > expected.getHeight();
+        logger.info("是否符合身高：{}", b);
+        return b;
     }
-    boolean b = realHeight > expected.getHeight();
-    logger.info("是否符合身高：{}", b);
-    return b;
-  }
 
-  @Override
-  protected Double extractRealData(RealDataDTO real) {
-    return real.getHeight();
-  }
-
-  @Override
-  protected boolean ifFilterNeed(ExpectedEntity expected) {
-    if (expected.getHeight() != null) {
-      return true;
+    @Override
+    protected Double extractRealData(RealDataDTO real) {
+        return real.getHeight();
     }
-    return false;
-  }
+
+    @Override
+    protected boolean ifFilterNeed(ExpectedEntity expected) {
+        if (expected.getHeight() != null) {
+            return true;
+        }
+        return false;
+    }
 }

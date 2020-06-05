@@ -32,7 +32,7 @@ public class UserController {
     private String refreshDataInRealTime;
 
     @GetMapping(value = "/user/get")
-    public IResponse<UserInfoDTO> getUserInfoByUserId(String userId) {
+    public IResponse<UserInfoDTO> getUserInfoByUserId(Long userId) {
         LOGGER.info("controller abc:{}", refreshDataInRealTime);
         return IResponseUtil.success(userInfoService.getUserInfoByUserId(userId));
     }
