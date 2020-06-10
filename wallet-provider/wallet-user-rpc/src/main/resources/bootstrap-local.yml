@@ -5,9 +5,14 @@ spring:
       config:
         namespace: 239ca3d0-33ae-422c-8cd1-6ef73212cd09
         server-addr: 122.51.7.220:8888
-#dubbo:
-#  registry:
-#    address: nacos://122.51.7.220:8888
-#    parameters: 239ca3d0-33ae-422c-8cd1-6ef73212cd09
-#  scan:
-#    base-packages: com.venn.user.service
+  main:
+    allow-bean-definition-overriding: true
+dubbo:
+  registry:
+    address: spring-cloud://localhost
+  scan:
+    base-packages: com.venn.user.service
+  protocol:
+    name: dubbo
+    port: -1
+

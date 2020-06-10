@@ -4,6 +4,7 @@ import com.venn.domain.dto.UserInfoDTO;
 import com.venn.user.entity.UserDomain;
 import com.venn.user.manager.UserInfoManager;
 import com.venn.user.service.UserInfoService;
+import org.apache.dubbo.config.annotation.Service;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.BeanUtils;
@@ -18,7 +19,7 @@ import org.springframework.stereotype.Component;
  */
 @RefreshScope
 @Component
-//@Service
+@Service
 public class UserInfoServiceImpl implements UserInfoService {
 
     private static final Logger LOGGER = LogManager.getLogger(UserInfoService.class);

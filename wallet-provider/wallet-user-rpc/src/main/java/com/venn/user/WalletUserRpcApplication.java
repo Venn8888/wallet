@@ -3,7 +3,6 @@ package com.venn.user;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 /**
@@ -14,7 +13,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 @SpringBootApplication
 @MapperScan(basePackages = "com.venn.user.mapper")
 @EnableDiscoveryClient
-@ServletComponentScan
+//@ServletComponentScan
 public class WalletUserRpcApplication {
 
     public static void main(String[] args) {

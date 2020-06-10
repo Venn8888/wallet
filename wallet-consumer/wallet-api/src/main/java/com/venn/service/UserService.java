@@ -1,21 +1,14 @@
 package com.venn.service;
 
-import com.venn.domain.IResponse;
-import com.venn.domain.dto.MobileMessageDTO;
 import com.venn.domain.dto.UserInfoDTO;
-import com.venn.domain.enums.ErrorCodeMsgEnum;
 import com.venn.domain.vo.req.UserInfoReqVO;
 import com.venn.domain.vo.rsp.UserInfoRspVO;
-import com.venn.feign.facade.MessageRpcFacade;
-import com.venn.feign.facade.UserRpcFacade;
-import com.venn.exception.WalletException;
+import com.venn.user.service.UserInfoService;
+import org.apache.dubbo.config.annotation.Reference;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.RequestBody;
 
 /**
  * @author venn
@@ -27,16 +20,8 @@ public class UserService {
 
     private static final Logger log = LogManager.getLogger(UserService.class);
 
-    private final UserRpcFacade userRpcFacade;
-
-    private final MessageRpcFacade messageRpcFacade;
-
-    @Autowired
-    public UserService(UserRpcFacade userRpcFacade, MessageRpcFacade messageRpcFacade) {
-        this.userRpcFacade = userRpcFacade;
-        this.messageRpcFacade = messageRpcFacade;
-    }
-
+    @Reference
+    private UserInfoService userInfoService;
     /**
      * <p>
      *
@@ -45,18 +30,11 @@ public class UserService {
      * @author : venn
      * @date : 2019/11/5
      **/
-    public UserInfoRspVO getUserInfo(@RequestBody @Validated UserInfoReqVO userInfoReqVO) {
+    public UserInfoRspVO getUserInfo(UserInfoReqVO userInfoReqVO) {
         log.info("req:{}", userInfoReqVO);
-        IResponse<UserInfoDTO> iResponse = userRpcFacade.getUserInfoByUserId(userInfoReqVO.getUserId());
-        IResponse<MobileMessageDTO> response = messageRpcFacade.getMobileMessageDTO(123L);
-        log.info("message rsp:{}", response);
-        if (!iResponse.isSuccess()) {
-            throw new WalletException(ErrorCodeMsgEnum.FAIL);
-        }
-        UserInfoRspVO rspVO = new UserInfoRspVO();
-        UserInfoDTO dto = iResponse.getData();
-        BeanUtils.copyProperties(dto, rspVO);
-        log.info("user rsp:{}", rspVO);
-        return rspVO;
+        UserInfoDTO infoByUserId = userInfoService.getUserInfoByUserId(Long.valueOf(userInfoReqVO.getUserId()));
+        UserInfoRspVO userInfoRspVO = new UserInfoRspVO();
+        BeanUtils.copyProperties(infoByUserId,userInfoRspVO);
+        return userInfoRspVO;
     }
 }
