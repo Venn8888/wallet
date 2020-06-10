@@ -9,7 +9,7 @@ spring:
     allow-bean-definition-overriding: true
 dubbo:
   registry:
-    address: spring-cloud://localhost
+    address: spring-cloud://122.51.7.220
   scan:
     base-packages: com.venn.user.service
   protocol:

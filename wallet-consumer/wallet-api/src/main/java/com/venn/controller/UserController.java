@@ -1,11 +1,12 @@
 package com.venn.controller;
 
 import com.venn.domain.IResponse;
+import com.venn.domain.dto.UserInfoDTO;
 import com.venn.domain.vo.req.UserInfoReqVO;
-import com.venn.domain.vo.rsp.UserInfoRspVO;
-import com.venn.service.UserService;
+import com.venn.user.service.UserInfoService;
 import com.venn.utils.IResponseUtil;
 import com.venn.utils.IdWorkerConfiguration;
+import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,8 +23,8 @@ import org.springframework.web.bind.annotation.RestController;
 //@EnableDiscoveryClient
 public class UserController {
 
-    @Autowired
-    private UserService userService;
+    @Reference
+    UserInfoService userInfoService;
 
     @Autowired
     private IdWorkerConfiguration idWorkerConfiguration;
@@ -32,7 +33,7 @@ public class UserController {
     public IResponse getUserInfo(@RequestParam @Validated UserInfoReqVO userInfoReqVO) {
         long nextId = idWorkerConfiguration.idWorker().nextId();
         System.out.println("------------>" + nextId);
-        UserInfoRspVO userInfo = userService.getUserInfo(userInfoReqVO);
-        return IResponseUtil.success(userInfo);
+        UserInfoDTO userInfoByUserId = userInfoService.getUserInfoByUserId(Long.valueOf(userInfoReqVO.getUserId()));
+        return IResponseUtil.success(userInfoByUserId);
     }
 }

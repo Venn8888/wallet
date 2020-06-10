@@ -5,13 +5,11 @@ spring:
       config:
         namespace: 239ca3d0-33ae-422c-8cd1-6ef73212cd09
         server-addr: 122.51.7.220:8888
-  main:
-    allow-bean-definition-overriding: true
 dubbo:
   registry:
-    address: spring-cloud://localhost
-  scan:
-    base-packages: com.venn.user.service
+    address: spring-cloud://122.51.7.220
   protocol:
     name: dubbo
     port: -1
+  cloud:
+    subscribed-services: user-rpc

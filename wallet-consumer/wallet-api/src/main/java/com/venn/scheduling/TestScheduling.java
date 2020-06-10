@@ -1,3 +1,4 @@
+/*
 package com.venn.scheduling;
 
 import com.venn.domain.RedisLock;
@@ -11,11 +12,13 @@ import org.springframework.stereotype.Component;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+*/
 /**
  * @author venn
  * @version 1.0.0
  * @date 2019/10/21 10:47
- */
+ *//*
+
 @Component
 public class TestScheduling {
 
@@ -62,3 +65,4 @@ public class TestScheduling {
     }
 
 }
+*/
